@@ -82,7 +82,7 @@ void main() {
   vec3 dB = vec3(texture(uSampler3, vTexCoord_illinois));
   vec3 ds = vec3(texture(uSampler3, dsCoord));
   vec3 dt = vec3(texture(uSampler3, dtCoord));
-  vec3 n = n - cross((ds-dB) * 256.0 * n, vec3(0.0, 1.0, 0.0)) + cross((dt-dB) * 256.0 *n, vec3(1.0, 0.0, 0.0));
+  vec3 n = n - cross((ds-dB) * 256.0 *n, vec3(0.0, 1.0, 0.0)) + cross((dt-dB) * 256.0 * n, vec3(1.0, 0.0, 0.0));
 
   // Reflective Surface
   vec2 vTexCoord_stadium;
@@ -91,7 +91,7 @@ void main() {
 
   vec3 illinois = vec3(texture(uSampler, vTexCoord_illinois));
   vec3 stadium = vec3(texture(uSampler2, vTexCoord_stadium));
-  vec3 teapot_c = illinois + 0.8*stadium;
+  vec3 teapot_c = 0.9*illinois + 0.8*stadium;
 
   n = normalize(n);
   vec3 l = normalize(l);
@@ -247,7 +247,7 @@ function initwebgl() {
                 gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 255, 255]));
 
   var image3 = new Image();
-  image3.src = "NormalMap.png";
+  image3.src = "DisplacementMap.png";
 
   image3.addEventListener("load", function() {
     gl.bindTexture(gl.TEXTURE_2D, texture3);
